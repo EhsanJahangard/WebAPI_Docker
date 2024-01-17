@@ -1,25 +1,26 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+# Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["WebApplication_Docker/WebApplication_Docker.csproj", "WebApplication_Docker/"]
-RUN dotnet restore "./WebApplication_Docker/./WebApplication_Docker.csproj"
+WORKDIR /source
 COPY . .
-WORKDIR "/src/WebApplication_Docker"
-RUN dotnet build "./WebApplication_Docker.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet restore "./WebApplication_Docker.csproj" --disable-parallel
+RUN dotnet publish "./WebApplication_Docker.csproj" -c release -o /app --no-restore
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./WebApplication_Docker.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
+# Serve stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WebApplication_Docker.dll"]
+COPY --from=build /app ./
+
+EXPOSE 5000
+
+ENTRYPOINT ["dotnet" , "WebApplication_Docker.dll"]
+
+
+
+#In the WSL OR SERVE Linux below Commands
+
+# 1. docker build --rm -t appproduct/mycloud:latest .
+# 2. docker image ls
+# 3. docker run --rm -p 5000:5000 -p 5001:5001 -e ASPNETCORE_HTTP_PORT=https://+:5001 -e ASPNETCORE_URLS=http://+:5000 appproduct/mycloud
+# 4. docker ps
+# 5. docker container stop idcontainer for example:
+#		docker container stop 826664878ec4
