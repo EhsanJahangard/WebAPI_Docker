@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication_Docker", "WebApplication_Docker\WebApplication_Docker.csproj", "{E005D36F-6E60-43B4-AFF6-ADDF950F58CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication_Docker", "WebApplication_Docker\WebApplication_Docker.csproj", "{E005D36F-6E60-43B4-AFF6-ADDF950F58CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service2", "service2\service2.csproj", "{ACE3DC75-A053-4946-8080-EFF63916DA8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E005D36F-6E60-43B4-AFF6-ADDF950F58CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E005D36F-6E60-43B4-AFF6-ADDF950F58CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E005D36F-6E60-43B4-AFF6-ADDF950F58CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE3DC75-A053-4946-8080-EFF63916DA8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE3DC75-A053-4946-8080-EFF63916DA8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE3DC75-A053-4946-8080-EFF63916DA8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE3DC75-A053-4946-8080-EFF63916DA8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
